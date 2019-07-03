@@ -1,0 +1,50 @@
+/*body{*/
+    /*width: 500px;*/
+    /*height: 500px;*/
+/*}*/
+.content{
+    width: 100%;
+    height: 100%;
+    background-color: #bf9eed;
+    position: relative;
+    float: left;
+}
+
+.leftContent{
+    float: left;
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.left_context p{
+    float: left;
+}
+.left_context a{
+    float: left;
+}
+ul li{display: inline-block;width: 80px;}
+ul li a{text-decoration: none;color: #666;}
+/*li{*/
+
+    /*padding: 20px;*/
+
+/*}*/
+
+
+
+/*.right_context{*/
+    /*float: right;*/
+/*}*/
+img{
+    width: 50px;
+    height: 50px;
+}
+#myCanvans{
+    border-width: 10px;
+    border-color: #bf9eed;
+}

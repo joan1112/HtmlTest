@@ -1,0 +1,59 @@
+<!doctype html>
+<html >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+	KNOCKOUT LESSON 1
+  </title>
+  <link rel="stylesheet" type="text/css" href="../../Downloads/1_6_源码/1.简单的KnockOut数据模型绑定/css/main.css" />
+  <style>
+  #content1{padding:16px;}
+  </style>
+  <script type="text/javascript" src="../../Downloads/1_6_源码/1.简单的KnockOut数据模型绑定/scripts/knockout30.js"></script>
+  </head>
+
+  <body>
+  
+  
+	<div id="content1">
+		userName:<input  type="text" id="useNameText" value="inputValue" data-bind="value:UserName" />
+		<p>
+			hello <b id="userNameView" data-bind="html:UserName" >inputValue</b>
+		</p>
+		<p>
+			hello <b id="userNameAgainView" data-bind="html:UserName" >inputValue</b> again
+		</p>
+	</div>
+	
+	
+	<script type="text/javascript" src="../../Downloads/1_6_源码/1.简单的KnockOut数据模型绑定/scripts/jQuery183.js"></script>
+	<script>
+	
+		$(document).ready(function(){
+			
+				/*
+				var  ViewModel = function(){
+					var self = this;
+					self.UserName = ko.observable("");
+				}
+				
+				var  currentViewModel = new  ViewModel();
+				ko.applyBindings(currentViewModel);
+				*/
+			
+				
+				var  useNameText = $("#useNameText");
+				var  userNameView = $("#userNameView");
+				var  userNameAgainView = $("#userNameAgainView");
+				useNameText.bind("change",function(){
+					var  userName = $(this).val();
+					userNameView.html(userName);
+					userNameAgainView.html(userName);
+				});
+				
+
+		});
+	</script>
+	
+  </body>
+</html>

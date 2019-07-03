@@ -1,0 +1,127 @@
+<!doctype html>
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+        KNOCKOUT LESSON 2
+    </title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <style>
+        table{border-collapse:collapse;border-spacing:0}
+        table {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        #content1{padding:16px;}
+    </style>
+    <script type="text/javascript" src="scripts/knockout30.js"></script>
+    <script type="text/javascript" src="scripts/jQuery183.js"></script>
+
+</head>
+
+<body>
+
+
+<div id="content1">
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>英文名</th>
+            <th>中文名</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody" data-bind="foreach:Planets" >
+        <tr>
+            <td data-bind="html:$index"></td>
+            <td data-bind="html:englishName"></td>
+            <td data-bind="html:chineseName"></td>
+            <td data-bind="html:description"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<a href="#" data-bind="click:newPlanet">新增</a>
+
+<script>
+    /*
+    Mercury
+    Venus
+    Earth
+    Mars
+    Jupiter
+    Saturn
+    Uranus
+    Neptune
+    Pluto
+    */
+
+    var  Planets = [
+        {id:1,englishName:"Mercury",chineseName:"水星",description:"离太阳最近的一颗行星"},
+        {id:2,englishName:"Venus",chineseName:"金星",description:"拥有非常厚的大气层的一颗行星"},
+        {id:3,englishName:"Earth",chineseName:"地球",description:"我们的家园"},
+        {id:4,englishName:"Mars",chineseName:"火星",description:"一颗红色的星球"},
+        {id:5,englishName:"Jupiter",chineseName:"木星",description:"太阳系最大的行星"},
+        {id:6,englishName:"Saturn",chineseName:"土星",description:"拥有最美丽光环的行星"},
+        {id:7,englishName:"Uranus",chineseName:"天王星",description:"内核是个巨大的海洋（8000千米）"},
+        {id:8,englishName:"Neptune",chineseName:"海王星",description:"一颗优雅的淡蓝色行星"},
+        {id:9,englishName:"Pluto",chineseName:"冥王星",description:"曾经是行星的行星"}
+    ];
+
+    function RenderPlanets()
+    {
+        var tableBody = $("#tableBody");
+        var planetsString = "";
+        for( var i in Planets){
+            planetsString+= "<tr>";
+            planetsString += "<td>"+Planets[i].id+"</td>";
+            planetsString += "<td>"+Planets[i].englishName+"</td>";
+            planetsString += "<td>"+Planets[i].chineseName+"</td>";
+            planetsString += "<td>"+Planets[i].description+"</td>";
+            planetsString+= "</tr>";
+        }
+        tableBody.html(planetsString);
+    }
+
+    $(document).ready(function(){
+
+        //RenderPlanets();
+
+
+
+        var  ViewModel = function(){
+            var self = this;
+            self.Planets = ko.observableArray(Planets);
+            self.newPlanet = function(){
+                self.Planets.push({id:10,englishName:"unknow",chineseName:"未知行星",description:"等待人类去发现"});
+                return false;
+            }
+        };
+        var  currentViewModel = new ViewModel();
+        ko.applyBindings(currentViewModel);
+
+
+    });
+</script>
+
+</body>
+</html>

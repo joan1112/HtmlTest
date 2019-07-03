@@ -1,0 +1,63 @@
+section{
+    display: grid;
+    grid-template-areas: "value map map map cans" "produes map map map makes" "cands map map map number11" "ends lens nuss bigers profits";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    /*grid-template-columns: repeat(4,1fr);*/
+    grid-template-rows: 150px 150px 120px 80px ;
+    grid-column-gap: 100px;
+    grid-row-gap: 100px;
+    word-wrap:break-word;
+    word-break:break-all;
+
+    /*start end center stretch*/
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+}
+body{
+    background-color: azure;
+}
+section > article {position: relative;}
+section > article.value{grid-area: value;}
+section > article.map{grid-area: map}
+section > article.cans{grid-area: cans}
+section > article.produes{grid-area: produes}
+section > article.makes{grid-area: makes}
+section > article.cands{grid-area: cands}
+section > article.numbers{grid-area: number11}
+section > article.ends{grid-area: ends}
+section > article.lens{grid-area: lens}
+section > article.nuss{grid-area: nuss}
+section > article.bigers{grid-area: bigers}
+section > article.profits{grid-area: profits}
+
+img{float: right;}
+
+dl{margin: 10px}
+dl > dt{ font-size: 1.0rem;font-weight: bold}
+dl > dd{font-size: 1.0rem;}
+
+article.value{
+    background-color: #bf9eed;
+}
+article.map{
+    background-color: cornflowerblue;
+}
+.value#v123{width: 100%;height: 100%}
+.map#m123{width: 100%;height: 100%}
+h1{
+    color: #faa157;
+    font-size: 14px;
+    background-color: rgba(254,242,242,0.8);
+    background-image: none;
+}
+p{
+    text-align: center;
+    text-indent: 20px;
+    white-space: pre-wrap;
+}
+a:link{
+    color: #000000;}
+a:hover{text-decoration: none}
+a:visited{}
+a:active{text-decoration: underline}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="33.css">
+
+
+
+    <style>
+        table{border-collapse:collapse;border-spacing:0}
+        table {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            width: 300px;
+        }
+        table th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        #content1{padding:16px;}
+    </style>
+    <script src="scripts/knockout30.js"></script>
+    <script src="scripts/jQuery183.js"></script>
+
+</head>
+<body>
+
+<select id="select" data-bind="options:selectValue">
+    <!--<option>1123</option>-->
+</select>
+<a id="showSelect" href="#"></a>
+<p id="showvalue" href="#"></p>
+
+    <div id="content">
+       <table>
+           <thead>
+           <tr>
+               <th>id</th>
+               <th>english</th>
+               <th>chinese</th>
+               <th>description</th>
+           </tr>
+           </thead>
+           <tbody id="tableBody" data-bind="foreach:Planets" >
+           <tr>
+               <td data-bind="html:id"></td>
+               <td data-bind="html:englishname"></td>
+               <td data-bind="html:chinesName"></td>
+               <td data-bind="html:description"></td>
+           </tr>
+           </tbody>
+       </table>
+    </div>
+    <div>
+        <input id="firstName" type="text" id="useNameText" value="inputValue" data-bind="value:firstName"  />
+        <input id="lastName" type="text" id="useNameText1" value="inputValue" data-bind="value:lastName"/>
+        <p data-bind="html:firstName"></p>
+
+        <p data-bind="html:lastName"></p>
+
+        <p data-bind="html:fullName"></p>
+
+    </div>
+
+
+<!--<div>-->
+    <!--<input id="check" type="checkbox"   data-bind="checked:selectedAllProduce" title="select all" />-->
+
+<!--</div>-->
+<!--<div data-bind="foreach:produce">-->
+    <!--<label>-->
+    <!--<input id="checks" type="checkbox"   data-bind="checkedValue:$data,checked:$parent.selectedProduce"/>-->
+    <!--<span data-bind="text:$data"></span>-->
+    <!--</label>-->
+
+
+<!--</div>-->
+<div class="heading">
+    <input type="checkbox" data-bind="checked: selectedAllProduce" title="Select all/none"/> Produce
+</div>
+<div data-bind="foreach: produce">
+    <label>
+        <input type="checkbox" data-bind="checkedValue: $data, checked: $parent.selectedProduce"/>
+        <span data-bind="text: $data"></span>
+    </label>
+</div>
+</div>
+
+
+<script>
+//    function RenderSelectOptions(data,selectNode) {
+//
+//    }
+   var planest = [{id:1,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星"},
+        {id:2,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星"},
+        {id:3,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星"},
+        {id:4,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星"},
+        {id:5,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星"},
+        {id:6,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星"},
+        {id:7,englishname:"Mercury",chinesName:"水星",description:"水星是离太阳最近的一颗行星水星是离太阳最近的一颗行星"}];
+   var datas = ["性别","年龄","身高"]
+
+//1
+$(document).ready(function(){
+    var  ViewModel = function(){
+            var self = this;
+            self.Planets = ko.observableArray(planest);
+            self.selectValue = ko.observableArray(datas);
+            self.firstName = ko.observable("hold");
+            self.lastName = ko.observable("hold");
+
+        self.fullName = ko.computed(function() {
+            return this.firstName() + " " + this.lastName();
+        }, self);
+        //
+
+//        self.selectedProduce = ko.observableArray(['apple']);
+//        self.selectAllProduce = ko.pureComputed({
+//            read:function () {
+//                return self.selectedProduce().length === self.produce.length;
+//            },
+//            write:function (value) {
+//                self.selectedProduce(value?self.produce.slice(0):[]);
+//            },
+//            owner:self
+//        });
+
+        self.produce = [ 'Apple', 'Banana', 'Celery', 'Corn', 'Orange', 'Spinach' ];
+        self.selectedProduce = ko.observableArray([ 'Corn', 'Orange' ]);
+        self.selectedAllProduce = ko.computed({
+            read: function () {
+                // Comparing length is quick and is accurate if only items from the
+                // main array are added to the selected array.
+                return self.selectedProduce().length === self.produce.length;
+            },
+            write: function (value) {
+                self.selectedProduce(value ? self.produce.slice(0) : []);
+            },
+            owner: self
+        });
+
+
+        };
+        var currentViewModel = new ViewModel();
+        ko.applyBindings(currentViewModel);
+
+//    $(showSelect).click(function () {
+//        var slect = $("showvalue")
+//        slect.html()
+//    })
+
+});
+
+
+
+</script>
+</body>
+</html>

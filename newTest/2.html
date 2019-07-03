@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="22.css"/>
+    <link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css"js/>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+        .heads{width:100%;overflow: hidden;
+            background-color: #333;}
+
+        .content{ width:100%;height:auto; background-color:#fafafa; float:left;position: relative}
+        li.tablelist::after {clear: both;content: ".";display: block;height: 0;overflow: hidden;}
+        .tablelist{
+            background-color: white;
+            width: 600px;
+            height: 100px;
+            border: gray 8px;
+            position:relative;
+        }
+        li{
+
+        }
+
+        .tablelist li.info-detail{
+            margin:0; padding:0; float:left;
+
+        }
+
+    </style>
+    <script>
+        document.onreadystatechange = subSomething;
+
+        function subSomething() {
+            if (document.readyState == 'complete')
+                var imgs = document.getElementsByTagName('img')
+            console.log(imgs)
+            for (var index = 0; index < imgs.length; index++) {
+                console.log(imgs[index].width)
+                if (imgs[index].width > 100) {
+                    imgs[index].style.width='50px'
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!--<div id="app">-->
+    <!--<p>{{ message }}</p>-->
+    <!--<input v-model="message">-->
+<!--</div>-->
+
+<div id="demo">
+
+
+</div>
+
+<div>
+    <img src='http://api.sijiedu.com/api/statics/word/2.png' style="max-width: 100px ;height: auto">
+    000000
+    <p id="p1" onclick="changeName(this)">Hello World!</p>
+    <p id="p2">Hello World!</p>
+    <input id="id1" type="number" min="100" max="300" required>
+    <button onclick="myFunction()">confirm</button>
+       <p id="sign">0</p>
+    <button type="button" onclick="myFunction()">计数!</button>
+    <p id="demo1">0</p>
+    <p id="demo2">0</p>
+    <p id="demo3">0</p>
+    <p id="demos">0</p>
+    <p>设置不同的列表项标记为有序列表设置不同的列表项标记为有序列表设置不同的列表项标记为有序列表设置不同的列表项标记为有序列表</p>
+
+</div>
+<div id="app">
+
+
+    <ol>
+        <li v-for="site in sites">
+            {{ site.name }}
+        </li>
+    </ol>
+</div>
+<div class="navbar" style="height: 80px;background-color: white">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <div class="navbar-member">
+                  <img src="image/gift_icon.png">
+              </div>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">订单管理</a></li>
+              <li><a href="#">我的钱包</a></li>
+              <li><a href="#">个人信息</a></li>
+              <li><a href="#">更多</a></li>
+          </ul>
+      </div>
+
+
+  </div>
+
+
+</div>
+
+
+<div class="heads">
+
+    <div class="content">
+
+        <ul>
+            <li>
+                <div class="tablelist">
+                    <div class="userhead">
+                       <img src="image/gift_icon.png" height="49" width="49"/>
+                    </div>
+                    <div class="info-detail">
+                        <div class="nick"> <a href="#">aaaaaayyy</a></div>
+                        <div class="info"><span>1/20份</span> <em>￥<i>5000.00</i></em></div>
+                        <div class="f-ct">
+                            <a href="#">还有机会</a>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            sites: [
+                { name: 'Runoob' },
+                { name: 'Google' },
+                { name: 'Taobao' }
+            ]
+        }
+    })
+
+    var person = {
+        firstName:"John",
+        lastName:"Doe",
+        age:50,
+        eyeColor:"blue"
+    };
+    document.getElementById("demo").innerHTML =
+        person.firstName + " 现在 " + person.age + " 岁。";
+    document.getElementById("p2").style.color="blue";
+    document.getElementById("p2").style.fontFamily="Arial";
+    document.getElementById("p2").style.fontSize="larger";
+function changeName(id) {
+    id.innerHTML = "hello ,is me";
+
+}
+
+    var add = (function () {
+        var counter = 0;
+        return function () {return counter += 1;}
+
+    })();
+
+
+
+
+    function Person(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+    }
+
+    Person.prototype.name = function() {
+        return this.firstName + " " + this.lastName
+    };
+
+    var myFather = new Person("John", "Doe", 50, "blue");
+    document.getElementById("demos").innerHTML =
+        "我对父亲是 " + myFather.name();
+
+
+    Person.prototype.name = function() {
+        return this.firstName + " " + this.lastName;
+    };
+    function myFunction() {
+        document.getElementById("sign").innerHTML = add();
+
+
+    }
+
+
+    var myNumber=128;
+    myNumber.toString(16)  ;   // 返回 80
+    myNumber.toString(8);    // 返回 200
+    myNumber.toString(2);
+
+    document.getElementById("demo1").innerHTML = myNumber.toString(16);
+    document.getElementById("demo2").innerHTML = myNumber.toString(8);
+    document.getElementById("demo3").innerHTML = myNumber.toString(2);
+//    var imgs=document.getElementsByTagName('img');
+//    for (var index = 0; index < imgs.length; index++) {
+//        if (imgs[index].width < 200) {
+//
+//            imgs[index].width = 100;
+//            imgs[index].height = 100;
+//        }
+//    }
+
+</script>
+</body>
+</html>
